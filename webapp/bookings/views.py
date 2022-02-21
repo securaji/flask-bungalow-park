@@ -14,7 +14,7 @@ def delete_booking(booking_id):
         abort(403)
     db.session.delete(booking)
     db.session.commit()
-    flash(f"Je boeking is geannuleerd!", 'success')
+    flash(f"Your booking has been cancelled!", 'success')
     return redirect(url_for('main.account'))
 
 @bookings.route('/booking/<int:booking_id>/update', methods=["POST", "GET"])
@@ -37,10 +37,10 @@ def update_booking(booking_id):
         if Booking.query.filter_by(bungalow_id=booking.bungalow_id).filter_by(week=form.week.data).first() is None:
             booking.week = form.week.data
             db.session.commit()
-            flash(f"Je boeking is aangepast!", 'success')
+            flash(f"Your booking has been adjusted!", 'success')
             return redirect(url_for('main.account'))
         else:
-            flash(f"De bungalow is op uw gewenste week al gereserveerd!", 'danger')
+            flash(f"The bungalow is already reserved on your desired week!", 'danger')
             return redirect(url_for('bookings.update_booking', booking_id=booking_id))
     elif request.method == 'GET':
         form.week.default = booking.week
@@ -54,7 +54,7 @@ def book(id):
     weekchoices = []
     for x in range(1, 53):
         if str(x) in booked_weeks:
-            weekchoices.append((x, f"Week {x} - Gereserveerd"))
+            weekchoices.append((x, f"Week {x} - Reserved"))
         else:
             weekchoices.append((x, f"Week {x}"))
     form = BookForm()
@@ -66,10 +66,10 @@ def book(id):
             booking = Booking(guest_id=current_user.id, bungalow_id=id , week=form.week.data)
             db.session.add(booking)
             db.session.commit()
-            flash(f"Bungalow gereserveerd!", 'success')
+            flash(f"Bungalow reserved!", 'success')
             return redirect(url_for('main.account'))
         else:
-            flash(f"De bungalow is op uw gewenste week al gereserveerd!", 'danger')
+            flash(f"The bungalow is already reserved on your desired week!", 'danger')
             return redirect(url_for('bookings.book', id=id))
 
     return render_template('book_bungalow.html', bungalow=bungalow, form=form, css='bungalow.css')

@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, abort, Blueprint 
+from flask import render_template, url_for, flash, redirect, request, Blueprint 
 from webapp import app, db ,bcrypt
 from webapp.main.forms import RegisterForm, LoginForm
 from webapp.models import User, Booking, Bungalow
@@ -10,7 +10,7 @@ main = Blueprint('main', __name__, template_folder='templates')
 def index():
     return render_template('home.html', css="home.css")
 
-@main.route('/registreren', methods=["POST", "GET"])
+@main.route('/register', methods=["POST", "GET"])
 def registreren():
     if current_user.is_authenticated:
         return redirect(url_for('main.account'))
@@ -20,12 +20,12 @@ def registreren():
         user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash(f"Account is aangemaakt. Je kunt nu inloggen.", 'success')
+        flash(f"Account has been created. You can now login.", 'success')
         return redirect(url_for('main.inloggen'))
 
-    return render_template('registreren.html', form=form, title="Registreren")
+    return render_template('registreren.html', form=form, title="Register")
 
-@main.route('/inloggen', methods=["POST", "GET"])
+@main.route('/login', methods=["POST", "GET"])
 def inloggen():
     if current_user.is_authenticated:
         return redirect(url_for('main.account'))
@@ -40,8 +40,8 @@ def inloggen():
             else:
                 return redirect(url_for('main.account'))
         else:
-            flash(f"De combinatie van e-mailadres en wachtwoord is onjuist.", 'danger')
-    return render_template('login.html', form=form, title="Inloggen")
+            flash(f"The combination of email address and password is incorrect.", 'danger')
+    return render_template('login.html', form=form, title="login")
 
 @main.route('/account')
 @login_required
@@ -49,7 +49,7 @@ def account():
     bookings = Booking.query.join(Bungalow).filter(Booking.guest_id == current_user.id).all()
     return render_template('account.html', title="Account", bookings=bookings)
 
-@main.route('/uitloggen')
+@main.route('/log-out')
 def uitloggen():
     logout_user()
     return redirect(url_for('main.index'))

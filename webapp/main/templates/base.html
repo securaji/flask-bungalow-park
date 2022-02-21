@@ -24,8 +24,6 @@
     <link rel="stylesheet" href="/static/css/{{css}}">
     {% endif %}
 
-    <link rel="stylesheet" href="/static/css/main.css">
-
     {% if title %}
     <title>{{ title }} | Bungalowpark Zee en Duin</title>
     {% else %}
@@ -50,21 +48,21 @@
               </li>
               
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('bungalows.zoek')}}">Zoek & Boek</a>
+                <a class="nav-link" href="{{ url_for('bungalows.zoek')}}">Search & Book</a>
               </li>
               {% if current_user.is_authenticated %}
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('main.account')}}">Mijn account</a>
+                <a class="nav-link" href="{{ url_for('main.account')}}">My account</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('main.uitloggen')}}">Uitloggen</a>
+                <a class="nav-link" href="{{ url_for('main.uitloggen')}}">Log out</a>
               </li>
               {% else %}
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('main.inloggen')}}">Inloggen</a>
+                <a class="nav-link" href="{{ url_for('main.inloggen')}}">Login</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('main.registreren')}}">Registreren</a>
+                <a class="nav-link" href="{{ url_for('main.registreren')}}">Register</a>
               </li>
               {% endif %}
             </ul>

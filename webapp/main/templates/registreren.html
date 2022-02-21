@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <form class="text-center mt-5" action="" method="post">
-                <h1 class="h2 mb-4 font-weight-normal">Registreren</h1>
+                <h1 class="h2 mb-4 font-weight-normal">Register</h1>
                     <div class="row justify-content-center">
                         <div class="form-group col-md-7 px-4">
                         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -98,7 +98,7 @@
                     </div>
                     <div class="py-3">
                     <small class="text-muted">
-                        Heb je al een account?<a class="ml-2" href="{{ url_for('main.inloggen')}}">Inloggen</a>
+                        Do you already have an account?<a class="ml-2" href="{{ url_for('main.inloggen')}}">login</a>
                     </small>
                 </div>
             </form>

@@ -4,22 +4,22 @@
 {% block content %}
 <div class="container">
   <div class="jumbotron py-5">
-    <h2>Welkom {{current_user.first_name}} {{current_user.last_name}}</h2>
-    <p>Je kunt hier je reserveringen bekijken en eventueel aanpassen. Onder aanpassen wordt hier verstaan een andere
-      week inplannen, een week erbij boeken of een ander type huisje reserveren</p>
+    <h2>Welcome {{current_user.first_name}} {{current_user.last_name}}</h2>
+    <p>You can view and adjust your reservations here. Adjusting here means
+      planning another week, booking another week or booking a different type of house.</p>
   </div>
   <div class="jumbotron py-3">
-    <h5><u>Persoonlijke informatie:</u></h5>
+    <h5><u>Personal information:</u></h5>
     <p>
-      <b>Voornaam:</b> {{current_user.first_name}}
+      <b>First name:</b> {{current_user.first_name}}
       <br>
-      <b>Achternaam:</b> {{current_user.last_name}}
+      <b>Last name:</b> {{current_user.last_name}}
       <br>
-      <b>E-mailadres:</b> {{current_user.email}}
+      <b>E-mail address:</b> {{current_user.email}}
     </p>
   </div>
   {% if current_user.is_admin %}
-  <a class="btn btn-primary" href="{{ url_for('bungalows.add_bungalow')}}">Bungalow toevoegen</a>
+  <a class="btn btn-primary" href="{{ url_for('bungalows.add_bungalow')}}">Add bungalow</a>
   {% endif %}
   <hr>
   {% with messages = get_flashed_messages(with_categories=true) %}
@@ -33,17 +33,17 @@
   {% endwith %}
 
   {% if bookings %}
-  <p class="font-weight-bold">Je reserveringen:</p>
+  <p class="font-weight-bold">Your reservations:</p>
   <div class="table-responsive">
     <table class="table">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Boeking ID</th>
+          <th scope="col">Booking ID</th>
           <th scope="col">Bungalow</th>
-          <th scope="col">Aantal personen</th>
+          <th scope="col">Number of persons</th>
           <th scope="col">Week</th>
-          <th scope="col">Prijs</th>
-          <th scope="col">Opties</th>
+          <th scope="col">Price</th>
+          <th scope="col">Options</th>
         </tr>
       </thead>
       <tbody>
@@ -56,9 +56,9 @@
           <td>€{{booking.bungalow.weekprice}}</td>
           <td>
             <a href="{{url_for('bookings.update_booking', booking_id=booking.id)}}"
-              class="btn btn-warning">Aanpassen</a>
+              class="btn btn-warning">Change</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{booking.id}}">
-              Boeking annuleren
+              Cancel booking
             </button>
 
             <div class="modal fade" id="deleteModal{{booking.id}}" tabindex="-1" role="dialog"
@@ -66,18 +66,18 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Bevestiging</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    Weet je zeker dat je de boeking wil annuleren?
+                    Are you sure you want to cancel the booking?
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <form action="{{url_for('bookings.delete_booking', booking_id=booking.id)}}" method="post">
-                      <input type="submit" class="btn btn-danger" value="Boeking annuleren">
+                      <input type="submit" class="btn btn-danger" value="Cancel booking">
                     </form>
                   </div>
                 </div>
@@ -91,7 +91,7 @@
         </table>
         {% else %}
         <div class="text-center">
-          <h4>Je hebt nog geen reserveringen</h4>
+          <h4>You don't have any reservations yet</h4>
         </div>
         {% endif %}
       </div>

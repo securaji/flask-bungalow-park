@@ -2,7 +2,7 @@
 {% block content %}
 <div class="jumbotron py-3">
     <div class="container">
-        <h2>Beschikbare opties</h2>
+        <h2>Available options</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius in eros sit amet hendrerit. Maecenas ullamcorper molestie arcu sollicitudin congue. Donec lacinia mollis augue in pulvinar. Fusce id ultrices.</p>
     </div>
 </div>
@@ -32,11 +32,11 @@
                     <h5 class="card-title">{{ bungalow.name }}</h5>
                     <p class="card-text">{{ bungalow.content }}</p>
                     <p>
-                        <b>Aantal personen:</b> {{ bungalow.bungalow_type }}
+                        <b>Number of persons:</b> {{ bungalow.bungalow_type }}
                         <br>
-                        <b>Weekprijs:</b> €{{ bungalow.weekprice }}
+                        <b>Weekly rate:</b> €{{ bungalow.weekprice }}
                     </p>
-                    <a href="{{ url_for('bookings.book', id=bungalow.id) }}" class="btn btn-primary">Bekijken</a>
+                    <a href="{{ url_for('bookings.book', id=bungalow.id) }}" class="btn btn-primary">View</a>
                 </div>
             </div>
         </div>            

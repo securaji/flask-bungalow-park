@@ -4,9 +4,9 @@ from wtforms.validators import DataRequired
 
 
 class BookForm(FlaskForm):
-    week = SelectField('Gewenste week', coerce=int, validators=[DataRequired()])
-    submit = SubmitField('Boeken')
+    week = SelectField('Desired week', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Book')
 
 class UpdateBookingForm(FlaskForm):
-    week = SelectField('Gewenste week', coerce=int, validators=[DataRequired()])
-    submit = SubmitField('Aanpassen')
+    week = SelectField('Desired week', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Change')

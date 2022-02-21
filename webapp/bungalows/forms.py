@@ -1,17 +1,17 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, IntegerField, SelectField
+from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField
 from wtforms.widgets.html5 import NumberInput
 from wtforms.validators import DataRequired, ValidationError
 from webapp.models import Bungalow
 
 class AddBungalowForm(FlaskForm):
-    name = StringField('Naam', validators=[DataRequired()])
-    content = TextAreaField('Beschrijving', validators=[DataRequired()])
-    bungalow_type = SelectField('Aantal personen', choices=[('4', '4 Personen'), ('6', '6 Personen'), ('8', '8 Personen')], validators=[DataRequired()])
-    weekprice = IntegerField('Weekprijs', widget=NumberInput(), validators=[DataRequired()])
-    submit = SubmitField('Voeg bungalow toe')
+    name = StringField('Name', validators=[DataRequired()])
+    content = TextAreaField('Description', validators=[DataRequired()])
+    bungalow_type = SelectField('Number of persons', choices=[('4', '4 People'), ('6', '6 People'), ('8', '8 People')], validators=[DataRequired()])
+    weekprice = IntegerField('Weekly rate', widget=NumberInput(), validators=[DataRequired()])
+    submit = SubmitField('Add bungalow')
 
     def validate_name(self, name):
         name = Bungalow.query.filter_by(name=name.data).first()
         if name:
-            raise ValidationError('De gekozen bungalownaam bestaat al.')
+            raise ValidationError('The chosen bungalow name already exists.')

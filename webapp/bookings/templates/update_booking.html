@@ -12,12 +12,12 @@
             {% elif booking.bungalow.bungalow_type == 4 %}
             <img class="card-img-top bungalow-image" src="{{url_for('static', filename='img/4personen.jpg')}}" alt="Card image cap">
             {% endif %}
-            <h5 class="my-1">Beschrijving:</h5>
+            <h5 class="my-1">Description:</h5>
             <p>{{ booking.bungalow.content }}</p>
             <p>
-                <b>Aantal personen:</b> {{ booking.bungalow.bungalow_type }}
+                <b>Number of persons:</b> {{ booking.bungalow.bungalow_type }}
                 <br>
-                <b>Weekprijs:</b> €{{ booking.bungalow.weekprice }}
+                <b>Weekly rate:</b> €{{ booking.bungalow.weekprice }}
             </p>
             <hr>
             <form action="" method="post">
@@ -52,8 +52,8 @@
     </div>
     {% else %}
     <div class="text-center">
-    <h2 class="mt-5">Bungalow bestaat niet!</h2>
-    <a href="{{url_for('bungalows.zoek')}}">Klik hier om bungalows te zoeken</a>
+    <h2 class="mt-5">Bungalow does not exist!</h2>
+    <a href="{{url_for('bungalows.zoek')}}">Click here to search bungalows</a>
     </div>
     {% endif %}
 </div>
